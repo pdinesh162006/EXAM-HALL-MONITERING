@@ -1,0 +1,79 @@
+{
+  "exam_hall": "Hall 104 - Main Auditorium",
+  "camera_id": "CAM-01-FRONT",
+  "calibration_resolution": [1280, 720],
+  "seats": [
+    {
+      "seat_id": "seat-a1",
+      "label": "Seat A1",
+      "row": "A",
+      "col": 1,
+      "polygon": [[100, 130], [420, 130], [420, 380], [100, 380]],
+      "desk_polygon": [[120, 260], [400, 260], [400, 360], [120, 360]],
+      "assigned_student": {
+        "roll_no": "CS-24001",
+        "name": "Alex Mercer"
+      }
+    },
+    {
+      "seat_id": "seat-a2",
+      "label": "Seat A2",
+      "row": "A",
+      "col": 2,
+      "polygon": [[480, 130], [800, 130], [800, 380], [480, 380]],
+      "desk_polygon": [[500, 260], [780, 260], [780, 360], [500, 360]],
+      "assigned_student": {
+        "roll_no": "CS-24014",
+        "name": "Marcus Holloway"
+      }
+    },
+    {
+      "seat_id": "seat-a3",
+      "label": "Seat A3",
+      "row": "A",
+      "col": 3,
+      "polygon": [[860, 130], [1180, 130], [1180, 380], [860, 380]],
+      "desk_polygon": [[880, 260], [1160, 260], [1160, 360], [880, 360]],
+      "assigned_student": {
+        "roll_no": "CS-24029",
+        "name": "Clara Oswald"
+      }
+    },
+    {
+      "seat_id": "seat-b1",
+      "label": "Seat B1",
+      "row": "B",
+      "col": 1,
+      "polygon": [[100, 410], [420, 410], [420, 680], [100, 680]],
+      "desk_polygon": [[120, 540], [400, 540], [400, 660], [120, 660]],
+      "assigned_student": {
+        "roll_no": "CS-24035",
+        "name": "Tariq Al-Mansoor"
+      }
+    },
+    {
+      "seat_id": "seat-b2",
+      "label": "Seat B2",
+      "row": "B",
+      "col": 2,
+      "polygon": [[480, 410], [800, 410], [800, 680], [480, 680]],
+      "desk_polygon": [[500, 540], [780, 540], [780, 660], [500, 660]],
+      "assigned_student": {
+        "roll_no": "CS-24042",
+        "name": "Jordan Vance"
+      }
+    },
+    {
+      "seat_id": "seat-b3",
+      "label": "Seat B3",
+      "row": "B",
+      "col": 3,
+      "polygon": [[860, 410], [1180, 410], [1180, 680], [860, 680]],
+      "desk_polygon": [[880, 540], [1160, 540], [1160, 660], [880, 660]],
+      "assigned_student": {
+        "roll_no": "CS-24058",
+        "name": "Sophia Chen"
+      }
+    }
+  ]
+}

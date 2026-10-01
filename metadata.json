@@ -1,0 +1,6 @@
+{
+  "name": "SentinelExam AI - Exam Hall Monitoring & Integrity Suite",
+  "description": "Production-grade AI exam hall monitoring camera system with real-time suspicious behavior detection, seat mapping studio, human-in-the-loop alert verification, evidence management, and Gemini forensic assistant with Google Search grounding.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

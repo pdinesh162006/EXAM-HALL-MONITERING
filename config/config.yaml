@@ -1,0 +1,77 @@
+# SentinelExam AI - Configuration Specification
+# Production Parameters for Exam Hall Computer Vision Pipeline
+
+camera:
+  source: "0" # "0" for USB webcam, "rtsp://camera_ip:554/live" for RTSP, or path to .mp4
+  fps_target: 25
+  resolution: [1280, 720]
+  reconnect_delay_seconds: 3
+  frame_skip: 1 # Process every Nth frame if CPU bound
+
+models:
+  yolo_person_model: "yolov8m.pt"
+  yolo_object_model: "yolov8m_exam_objects.pt" # Fine-tuned on phones, chits, books
+  pose_confidence_threshold: 0.5
+  object_confidence_threshold: 0.65
+  device: "cuda:0" # "cuda:0" or "cpu" fallback
+
+behavior_rules:
+  # Rule 1: Looking away / peeking at neighbor desk
+  head_turn:
+    yaw_angle_threshold_degrees: 35.0
+    duration_threshold_seconds: 4.0
+    frequency_count_threshold: 3
+    window_duration_seconds: 120
+
+  # Rule 2: Mobile device detection
+  mobile_phone:
+    confidence_threshold: 0.75
+    consecutive_frames: 5
+    suspicion_score_increment: 40
+
+  # Rule 3: Unauthorized chit / paper material
+  unauthorized_material:
+    confidence_threshold: 0.70
+    desk_exclusion_whitelist: ["exam_paper", "id_card", "pen"]
+    suspicion_score_increment: 35
+
+  # Rule 4: Object passing between seats
+  object_passing:
+    adjacent_seat_distance_threshold_px: 200
+    wrist_proximity_threshold_px: 80
+    suspicion_score_increment: 45
+
+  # Rule 5: Talking / Whispering posture
+  talking_whispering:
+    torso_lean_angle_threshold_degrees: 25.0
+    mutual_gaze_angle_degrees: 30.0
+    duration_threshold_seconds: 3.0
+    suspicion_score_increment: 30
+
+  # Rule 6: Leaving seat without permission
+  seat_leaving:
+    absence_duration_seconds: 5.0
+    suspicion_score_increment: 50
+
+  # Rule 7: Hidden hand under desk
+  hidden_hand:
+    duration_threshold_seconds: 8.0
+    suspicion_score_increment: 20
+
+scoring:
+  suspicion_alert_threshold: 65.0
+  decay_rate_per_minute: 5.0
+  min_alert_cooldown_seconds: 15
+
+storage:
+  evidence_dir: "./evidence"
+  snapshot_format: "jpg"
+  video_clip_duration_seconds: 10
+  pre_event_seconds: 5
+  post_event_seconds: 5
+  retention_days: 90
+
+ethics:
+  require_human_confirmation: true
+  institution_consent_verified: true
+  auto_sanction_enabled: false # Strictly forbidden by policy

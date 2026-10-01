@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  sentinel-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sentinel-exam-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - CAMERA_SOURCE=0
+      - RETENTION_DAYS=90
+      - DEVICE=cpu # set to cuda:0 if NVIDIA GPU available
+    volumes:
+      - ./config:/app/config
+      - ./evidence:/app/evidence
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  sentinel-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: sentinel-exam-dashboard
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - sentinel-backend
